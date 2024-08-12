@@ -1,16 +1,12 @@
-export const fetchSingleBreed = async (animal: 'cat' | 'dog', id: string) => {
+export const fetchSingleBreed = async (id: string) => {
   try {
     const response = await fetch(
-      `https://api.the${animal}api.com/v1/images/${id}`,
+      `https://api.thecatapi.com/v1/images/${id}`,
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': `${
-            animal === 'cat'
-              ? process.env.CAT_BREEDS_API_KEY
-              : process.env.DOG_BREEDS_API_KEY
-          }`,
+          'x-api-key': `${process.env.CAT_BREEDS_API_KEY}`,
         },
       },
     );
@@ -65,7 +61,7 @@ export const fetchInitialCatBreedsData = async () => {
   const breedsDataWithImages = [];
 
   for (const breed of breedsList) {
-    const data = await fetchSingleBreed('cat', breed.reference_image_id);
+    const data = await fetchSingleBreed(breed.reference_image_id);
 
     breedsDataWithImages.push(data);
   }

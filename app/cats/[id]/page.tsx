@@ -33,7 +33,7 @@ const breedCharacteristic = [
 ];
 
 export default async function BreedPage({ params }: BreedPageProps) {
-  const data = await fetchSingleBreed('cat', params.id);
+  const data = await fetchSingleBreed(params.id);
 
   return (
     <article className='mb-2 flex flex-col items-center w-full lg:px-5 lg:mb-5 lg:flex-row lg:items-start'>
