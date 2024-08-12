@@ -1,7 +1,5 @@
-'use client';
 import { fetchInitialCatBreedsData } from '@/utils/dataFetch';
 import CatBreedCard from '../cats/CatBreedCard';
-import { useEffect, useState } from 'react';
 
 type CatBreed = {
   id: string;
@@ -17,14 +15,8 @@ type CatBreed = {
   ];
 };
 
-export default function CatSection() {
-  const [] = useState({page: 0, data: {}})
-
-  useEffect(() => {
-    const getData = async () => {
-      return await fetchInitialCatBreedsData();
-    };
-  }, []);
+export default async function CatSection() {
+  const initialData = await fetchInitialCatBreedsData();
 
   return (
     <section className='m-5'>
